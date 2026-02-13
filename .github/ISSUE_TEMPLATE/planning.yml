@@ -1,0 +1,80 @@
+name: Planning Request
+description: Build an implementation plan from research.
+title: "plan: <feature>"
+labels: ["planning"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Planning starts only after a research artifact exists.
+  - type: input
+    id: feature
+    attributes:
+      label: Feature
+      placeholder: oauth-login
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Project Mode
+      options:
+        - greenfield
+        - existing
+    validations:
+      required: true
+  - type: input
+    id: research_file
+    attributes:
+      label: Research file path
+      placeholder: docs/research/oauth-login-research.md
+    validations:
+      required: true
+  - type: input
+    id: baseline_reference
+    attributes:
+      label: Baseline reference (commit/tag)
+      placeholder: N/A (greenfield) or main@abc1234 (existing)
+    validations:
+      required: true
+  - type: input
+    id: compatibility_constraints
+    attributes:
+      label: Compatibility constraints
+      placeholder: N/A (greenfield) or no breaking API changes (existing)
+    validations:
+      required: true
+  - type: input
+    id: baseline_artifact_set
+    attributes:
+      label: Baseline artifact set
+      placeholder: N/A (greenfield) or docs/baseline/INDEX.md (existing)
+    validations:
+      required: true
+  - type: input
+    id: context_pack
+    attributes:
+      label: Context pack
+      placeholder: N/A (greenfield) or docs/baseline/context-packs/<feature>-context-pack.md (existing)
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Performance, security, compatibility, accessibility.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Quality Checklist
+      options:
+        - label: I will include trade-offs and concrete steps.
+          required: true
+        - label: I will include a token efficiency section.
+          required: true
+        - label: If mode is existing, I will include impact, rollback, and regression strategy.
+          required: true
+        - label: I will not implement in this phase.
+          required: true

@@ -1,0 +1,59 @@
+name: Implementation Request
+description: Execute an approved plan.
+title: "implement: <feature>"
+labels: ["implementation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Implementation requires an approved plan.
+  - type: input
+    id: plan_file
+    attributes:
+      label: Plan file path
+      placeholder: docs/plans/oauth-login-plan.md
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Project Mode
+      options:
+        - greenfield
+        - existing
+    validations:
+      required: true
+  - type: textarea
+    id: done_criteria
+    attributes:
+      label: Done Criteria
+      description: Include quality gates and verification criteria.
+    validations:
+      required: true
+  - type: textarea
+    id: risk_controls
+    attributes:
+      label: Existing mode risk controls
+      description: Required when mode is existing. Include compatibility, regression, rollback.
+      placeholder: N/A for greenfield.
+    validations:
+      required: true
+  - type: textarea
+    id: baseline_maintenance
+    attributes:
+      label: Baseline maintenance
+      description: Required when mode is existing. Explain how baseline and context pack will be updated after coding-agent changes.
+      placeholder: N/A for greenfield.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Implementation checklist
+      options:
+        - label: Plan is approved after annotation cycles.
+          required: true
+        - label: I will follow plan TODO order.
+          required: true
+        - label: I will stop if I hit ambiguity.
+          required: true

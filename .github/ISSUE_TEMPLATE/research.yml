@@ -1,0 +1,52 @@
+name: Research Request
+description: Start a research artifact before planning or implementation.
+title: "research: <module-or-feature>"
+labels: ["research"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill this issue before writing a plan.
+  - type: input
+    id: module
+    attributes:
+      label: Module
+      placeholder: auth, billing, notifications
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Project Mode
+      options:
+        - greenfield
+        - existing
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why this research is needed.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Paths and boundaries to analyze.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Process Checklist
+      options:
+        - label: I will not implement before plan approval.
+          required: true
+        - label: I will write output to docs/research/.
+          required: true
+        - label: I will include baseline and compatibility notes if mode is existing.
+          required: true
+        - label: If mode is existing, baseline has been bootstrapped and a context pack exists.
+          required: true
