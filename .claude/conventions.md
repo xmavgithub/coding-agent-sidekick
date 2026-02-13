@@ -8,6 +8,7 @@
 - Implementation only on approved plans.
 - In `existing` mode, baseline/context-pack usage is mandatory.
 - In `existing` mode, baseline refresh after coding-agent changes is mandatory.
+- During Sidekick adoption into other repositories, existing files must never be overwritten.
 
 ## Quality
 - Avoid undocumented workarounds.

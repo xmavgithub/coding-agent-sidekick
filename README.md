@@ -33,6 +33,7 @@ The agent should:
 ## Table of Contents
 - [What You Get](#what-you-get)
 - [One-Command Start](#one-command-start)
+- [Install In Any Repository](#install-in-any-repository)
 - [Project Modes](#project-modes)
 - [Quick Start](#quick-start)
 - [Workflow Standard](#workflow-standard)
@@ -47,6 +48,7 @@ The agent should:
 - Process documentation in English (`docs/process/`).
 - Templates for research, planning, and ADRs (`docs/templates/`).
 - Automation scripts for kickoff, plan gates, and baseline maintenance (`scripts/`).
+- Zero-overwrite installer with `audit/install/rollback` modes.
 - Existing-codebase baseline artifacts (`docs/baseline/`).
 - PR and issue policy templates plus CI checks (`.github/`).
 - Local commit-message hook support (`.githooks/`).
@@ -57,6 +59,30 @@ The agent should:
 |---|---|---|
 | `greenfield` | New app or isolated subsystem | Standard workflow artifacts only |
 | `existing` | Changes in a legacy/active codebase | Baseline bootstrap, context pack, compatibility/rollback/regression controls |
+
+## Install In Any Repository
+
+No-overwrite policy is enforced by installer design:
+- existing files are always skipped,
+- new files are create-only,
+- rollback removes only unchanged files created by installer manifest.
+
+### Audit first (recommended)
+```bash
+make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="audit" INSTALL_PROFILE="auto"
+```
+
+### Install safely
+```bash
+make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="install" INSTALL_PROFILE="auto"
+```
+
+### Rollback
+```bash
+make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="rollback"
+```
+
+Detailed guide: `docs/process/adoption-existing-repo.md`.
 
 ## Quick Start
 
@@ -116,6 +142,7 @@ For `existing` mode, prepend baseline/context-pack setup and append baseline ref
 | Command | Purpose |
 |---|---|
 | `Iniziamo` / `Let's start` / equivalent intent in your language | Starts guided intake and first-task setup |
+| `make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="audit|install|rollback" INSTALL_PROFILE="auto|new|existing"` | Install Sidekick in another repo with zero-overwrite safety |
 | `make kickoff FEATURE="<feature>" MODULE="<module>" MODE="<mode>"` | Create research + plan scaffolding (`<mode>` is `greenfield` or `existing`) |
 | `make coach FEATURE="<feature>"` | Show next step from current artifact state |
 | `make validate-plan FILE="docs/plans/<feature>-plan.md"` | Validate plan structure and required fields |

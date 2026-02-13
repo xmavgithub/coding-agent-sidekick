@@ -9,6 +9,12 @@ If the user starts with a short kickoff command (`Iniziamo`, `Let's start`, or e
 ```
 Run the guided intake first, then continue with steps below.
 
+If Sidekick must be installed into a populated repository, run safe adoption first:
+```bash
+make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="audit" INSTALL_PROFILE="auto"
+make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="install" INSTALL_PROFILE="auto"
+```
+
 If mode is `existing`, bootstrap baseline once:
 ```bash
 make bootstrap-existing-baseline SOURCE_PATH="."

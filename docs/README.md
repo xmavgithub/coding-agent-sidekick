@@ -6,6 +6,7 @@ Supported modes: `greenfield` and `existing`.
 - `ONBOARDING.md`
 
 ## Process
+- `docs/process/adoption-existing-repo.md`
 - `docs/process/session-start.md`
 - `docs/process/start-here.md`
 - `docs/process/workflow.md`

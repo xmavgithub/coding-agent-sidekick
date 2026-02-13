@@ -22,6 +22,7 @@ This project uses a multi-agent model. The rules below apply to all agents.
 5. Commits must follow Conventional Commits.
 6. Beginner contributors must use the guided path in `docs/process/start-here.md`.
 7. In `existing` mode, use baseline/context-pack artifacts and refresh baseline after coding-agent changes.
+8. During template adoption into other repositories, never overwrite existing files; use safe installer audit/install flow.
 
 ## Session start protocol (mandatory)
 - If a session opens with a short start-intent command (for example: `Iniziamo`, `Let's start`, or equivalent in the user's language), treat it as kickoff mode.

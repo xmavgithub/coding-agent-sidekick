@@ -1,6 +1,6 @@
 SHELL := /bin/sh
 
-.PHONY: help kickoff coach implementation-gate bootstrap-existing-baseline new-context-pack update-baseline new-research new-plan new-adr validate-plan validate-pr install-hooks check-commits
+.PHONY: help kickoff coach implementation-gate bootstrap-existing-baseline new-context-pack update-baseline new-research new-plan new-adr validate-plan validate-pr install-hooks check-commits install-sidekick
 
 help:
 	@echo "Available targets:"
@@ -17,6 +17,7 @@ help:
 	@echo "  make validate-pr"
 	@echo "  make install-hooks"
 	@echo "  make check-commits RANGE=\"HEAD~10..HEAD\""
+	@echo "  make install-sidekick TARGET_PATH=\"../my-repo\" INSTALL_MODE=\"audit|install|rollback\" INSTALL_PROFILE=\"auto|new|existing\" REPORT_PATH=\"docs/sidekick-report.md\" MANIFEST_PATH=\".sidekick/install-manifest-*.tsv\""
 
 kickoff:
 	@./scripts/kickoff.sh "$(FEATURE)" "$(MODULE)" "$(MODE)"
@@ -56,3 +57,6 @@ install-hooks:
 
 check-commits:
 	@./scripts/check-conventional-commits.sh --range "$(RANGE)"
+
+install-sidekick:
+	@./scripts/install-sidekick.sh --target "$(or $(TARGET_PATH),.)" --mode "$(or $(INSTALL_MODE),audit)" --profile "$(or $(INSTALL_PROFILE),auto)" --report "$(REPORT_PATH)" --manifest "$(MANIFEST_PATH)"

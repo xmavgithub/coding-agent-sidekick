@@ -20,6 +20,10 @@ In `existing` mode:
 ## Main rule
 Never implement before research + plan + annotation cycle are completed.
 
+## Adoption safety
+When installing Sidekick into existing repositories, never overwrite existing files.
+Use installer audit/install flow with create-only behavior.
+
 ## Session kickoff
 If the user opens with a short start command (`Iniziamo`, `Let's start`, or equivalent intent in their language):
 - keep the same user language,

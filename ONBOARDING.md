@@ -14,6 +14,23 @@ Expected behavior:
 - asks the right kickoff questions,
 - guides your first task using this repository workflow.
 
+## Install in an existing repository (safe mode)
+If you are adopting Sidekick into a repository that already has files:
+1. Run audit first:
+```bash
+make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="audit" INSTALL_PROFILE="auto"
+```
+2. Install only missing files:
+```bash
+make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="install" INSTALL_PROFILE="auto"
+```
+3. If needed, rollback:
+```bash
+make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="rollback"
+```
+
+Installer rule: existing files are never overwritten.
+
 ## Choose mode first
 Use one mode per feature:
 - `greenfield`: new app or new subsystem with no legacy constraints.

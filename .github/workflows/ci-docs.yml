@@ -46,3 +46,29 @@ jobs:
             test -f docs/research/ci-smoke-existing-research.md
             test -f docs/plans/ci-smoke-existing-plan.md
           )
+
+      - name: Installer no-overwrite smoke check
+        run: |
+          set -eu
+
+          TMP_INSTALL="$(mktemp -d)"
+          cp -R . "$TMP_INSTALL/repo"
+          cd "$TMP_INSTALL/repo"
+
+          TARGET_NEW="$TMP_INSTALL/target-new"
+          mkdir -p "$TARGET_NEW"
+          ./scripts/install-sidekick.sh --mode audit --profile auto --target "$TARGET_NEW"
+          ./scripts/install-sidekick.sh --mode install --profile auto --target "$TARGET_NEW"
+          test -f "$TARGET_NEW/README.md"
+          test -f "$TARGET_NEW/AGENTS.md"
+
+          TARGET_EXISTING="$TMP_INSTALL/target-existing"
+          mkdir -p "$TARGET_EXISTING"
+          cat > "$TARGET_EXISTING/README.md" <<'EOF'
+          # Existing README
+          EOF
+          PRE_HASH="$(sha256sum "$TARGET_EXISTING/README.md" | awk '{print $1}')"
+          ./scripts/install-sidekick.sh --mode install --profile auto --target "$TARGET_EXISTING"
+          POST_HASH="$(sha256sum "$TARGET_EXISTING/README.md" | awk '{print $1}')"
+          test "$PRE_HASH" = "$POST_HASH"
+          test -f "$TARGET_EXISTING/.sidekick/template/README.md"

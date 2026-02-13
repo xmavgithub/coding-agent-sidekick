@@ -16,6 +16,15 @@ The agent must:
 
 Reference: `docs/process/session-start.md`
 
+## Step -0.5: Safe adoption (if repository already has files)
+If you are installing Sidekick into a populated repository:
+- run audit:
+  `make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="audit" INSTALL_PROFILE="auto"`
+- run install:
+  `make install-sidekick TARGET_PATH="../my-repo" INSTALL_MODE="install" INSTALL_PROFILE="auto"`
+
+Reference: `docs/process/adoption-existing-repo.md`
+
 ## Step 0: Select project mode
 - `greenfield`: new application or new subsystem.
 - `existing`: changes on an existing codebase.
