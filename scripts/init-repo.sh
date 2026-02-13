@@ -15,6 +15,6 @@ cat <<'EOF'
 Next steps:
 1. scripts/install-hooks.sh
 2. git add .
-3. git commit -m "chore(repo): bootstrap coding-agent template"
+3. git commit -m "chore(repo): bootstrap coding-agent-sidekick"
 4. Create GitHub repository and push.
 EOF

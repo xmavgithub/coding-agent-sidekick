@@ -7,6 +7,7 @@ SCRIPT_DIR=$(CDPATH='' cd -- "$(dirname "$0")" && pwd)
 MODULE_NAME="${1:-}"
 require_non_empty_arg "$MODULE_NAME"
 MODE=$(resolve_mode "${2:-greenfield}")
+SLUG=$(slugify "$MODULE_NAME")
 
 BASELINE_DEFAULT="N/A"
 COMPAT_DEFAULT="N/A"
@@ -19,7 +20,6 @@ if [ "$MODE" = "existing" ]; then
   CONTEXT_PACK_DEFAULT="docs/baseline/context-packs/${SLUG}-context-pack.md"
 fi
 
-SLUG=$(slugify "$MODULE_NAME")
 DATE=$(date '+%Y-%m-%d')
 OUT_FILE="docs/research/${SLUG}-research.md"
 

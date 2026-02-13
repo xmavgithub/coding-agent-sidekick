@@ -22,3 +22,27 @@ jobs:
         run: |
           sh -n scripts/*.sh
           sh -n .githooks/commit-msg
+
+      - name: Runtime smoke check
+        run: |
+          set -eu
+
+          TMP_GREEN="$(mktemp -d)"
+          cp -R . "$TMP_GREEN/repo"
+          (
+            cd "$TMP_GREEN/repo"
+            make kickoff FEATURE="ci-smoke-greenfield" MODULE="ci-smoke-greenfield" MODE="greenfield"
+            test -f docs/research/ci-smoke-greenfield-research.md
+            test -f docs/plans/ci-smoke-greenfield-plan.md
+          )
+
+          TMP_EXISTING="$(mktemp -d)"
+          cp -R . "$TMP_EXISTING/repo"
+          (
+            cd "$TMP_EXISTING/repo"
+            make bootstrap-existing-baseline SOURCE_PATH="."
+            make new-context-pack FEATURE="ci-smoke-existing" TARGET_PATHS="scripts,docs"
+            make kickoff FEATURE="ci-smoke-existing" MODULE="ci-smoke-existing" MODE="existing"
+            test -f docs/research/ci-smoke-existing-research.md
+            test -f docs/plans/ci-smoke-existing-plan.md
+          )

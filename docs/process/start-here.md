@@ -3,6 +3,19 @@
 If you are new to coding agents, use only this path.
 Do not skip steps.
 
+## Step -1: Session start command
+Open a new session and type a short start command:
+- `Iniziamo`
+- `Let's start`
+- equivalent phrasing in your language
+
+The agent must:
+- keep your language,
+- ask guided kickoff questions,
+- move to the standard workflow after intake.
+
+Reference: `docs/process/session-start.md`
+
 ## Step 0: Select project mode
 - `greenfield`: new application or new subsystem.
 - `existing`: changes on an existing codebase.
@@ -14,6 +27,7 @@ If mode is `existing`, run one-time baseline bootstrap:
 ## Mandatory guided flow
 1. Read:
    - `docs/process/workflow.md`
+   - `docs/process/session-start.md`
    - `docs/checklists/pre-implementation.md`
 2. Start the feature:
    - `make new-research MODULE="<module>" MODE="<greenfield|existing>"`
@@ -31,6 +45,9 @@ If mode is `existing`, run one-time baseline bootstrap:
    - if touched paths changed, also pass `TARGET_PATHS="path/a,path/b"`
 
 ## Ready-to-use prompts
+Session kickoff:
+`Use .claude/templates/session-start.md and keep the user's language. Do not implement.`
+
 Research:
 `Use .claude/templates/research.md with PROJECT_MODE=<greenfield|existing> MODULE_NAME=<module> TARGET_PATH=<path> SLUG=<slug>. Do not implement.`
 

@@ -3,17 +3,27 @@
 ## Principle
 Separate thinking from execution.
 
+## Session kickoff
+- Start with a short natural-language command (`Iniziamo`, `Let's start`, or equivalent).
+- Agent runs guided intake as defined in `docs/process/session-start.md`.
+- Agent must keep user's language during kickoff.
+
 ## Modes
 - `greenfield`: for new applications or new isolated subsystems.
 - `existing`: for modifications to existing codebases.
 
 Pipeline:
-`Research -> Planning -> Annotation -> Implementation -> Verification`
+`Session Kickoff -> Research -> Planning -> Annotation -> Implementation -> Verification`
 
 Existing-mode extension:
-`One-time Baseline Bootstrap -> Context Pack -> Research -> Planning -> Annotation -> Implementation -> Baseline Refresh -> Verification`
+`Session Kickoff -> One-time Baseline Bootstrap -> Context Pack -> Research -> Planning -> Annotation -> Implementation -> Baseline Refresh -> Verification`
 
 ## Stage gates
+- Session kickoff to Research:
+  - kickoff intent recognized
+  - user language preserved
+  - first-task intake questions answered
+  - feature slug and mode clarified
 - Research to Planning:
   - complete research artifact
   - dependencies and edge cases identified

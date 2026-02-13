@@ -32,12 +32,12 @@ if ! grep -Eiq '^- Status:[[:space:]]*approved' "$PLAN_FILE"; then
   exit 1
 fi
 
-if ! grep -Fq '- [x] Iteration 1 completed' "$PLAN_FILE"; then
+if ! grep -Fq -- '- [x] Iteration 1 completed' "$PLAN_FILE"; then
   printf 'Iteration 1 not marked complete in %s\n' "$PLAN_FILE" >&2
   exit 1
 fi
 
-if ! grep -Fq '- [x] Iteration 2 completed' "$PLAN_FILE"; then
+if ! grep -Fq -- '- [x] Iteration 2 completed' "$PLAN_FILE"; then
   printf 'Iteration 2 not marked complete in %s\n' "$PLAN_FILE" >&2
   exit 1
 fi

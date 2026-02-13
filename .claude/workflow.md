@@ -3,6 +3,12 @@
 ## Step 0 - Start Here
 Read `docs/process/start-here.md` and execute commands in order.
 
+If the user starts with a short kickoff command (`Iniziamo`, `Let's start`, or equivalent intent in their language), begin with:
+```text
+.claude/templates/session-start.md
+```
+Run the guided intake first, then continue with steps below.
+
 If mode is `existing`, bootstrap baseline once:
 ```bash
 make bootstrap-existing-baseline SOURCE_PATH="."

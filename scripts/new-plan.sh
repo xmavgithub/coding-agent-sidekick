@@ -7,6 +7,7 @@ SCRIPT_DIR=$(CDPATH='' cd -- "$(dirname "$0")" && pwd)
 FEATURE_NAME="${1:-}"
 require_non_empty_arg "$FEATURE_NAME"
 MODE=$(resolve_mode "${2:-greenfield}")
+SLUG=$(slugify "$FEATURE_NAME")
 
 BASELINE_DEFAULT="N/A"
 COMPAT_DEFAULT="N/A"
@@ -29,7 +30,6 @@ if [ "$MODE" = "existing" ]; then
   REGRESSION_DEFAULT="TBD"
 fi
 
-SLUG=$(slugify "$FEATURE_NAME")
 DATE=$(date '+%Y-%m-%d')
 OUT_FILE="docs/plans/${SLUG}-plan.md"
 

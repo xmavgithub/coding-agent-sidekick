@@ -7,6 +7,7 @@ It starts without application code and focuses on process, standards, and guardr
 1. Code quality.
 2. Strict adherence to the approved plan.
 3. Token efficiency.
+4. Smooth first-session onboarding.
 
 ## Supported modes
 - `greenfield`: build a new app or isolated subsystem.
@@ -18,3 +19,9 @@ In `existing` mode:
 
 ## Main rule
 Never implement before research + plan + annotation cycle are completed.
+
+## Session kickoff
+If the user opens with a short start command (`Iniziamo`, `Let's start`, or equivalent intent in their language):
+- keep the same user language,
+- run guided intake first,
+- then transition to workflow artifacts.
